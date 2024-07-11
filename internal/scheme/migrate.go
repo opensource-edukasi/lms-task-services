@@ -57,7 +57,6 @@ var migrations = []darwin.Migration{
 				answer text NOT NULL,
 				score smallint NOT NULL,
 				feedback varchar(255),
-				feedback_file varchar(255),
 				created_at timestamptz NOT NULL DEFAULT timezone('utc', NOW()),
 				CONSTRAINT fk_student_tasks_to_tasks FOREIGN KEY(task_id) REFERENCES tasks(id) ON DELETE CASCADE
 			);
