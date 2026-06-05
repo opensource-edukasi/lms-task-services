@@ -6,11 +6,13 @@ import (
 
 	"google.golang.org/grpc"
 
+	tasksDomain "lms-task-service/internal/domain/tasks"
 	"lms-task-service/internal/pkg/db/redis"
+	tasksPb "lms-task-service/pb/tasks"
 )
 
 // GrpcRoute func
 func GrpcRoute(grpcServer *grpc.Server, db *sql.DB, log *log.Logger, cache *redis.Cache) {
-	//quizServer := quizDomain.QuizService{Db: db, Cache: cache}
-	//quizPb.RegisterQuizzesServer(grpcServer, &quizServer)
+	taskServer := tasksDomain.TaskServiceServer{Db: db, Cache: cache, Log: log}
+	tasksPb.RegisterTaskServiceServer(grpcServer, &taskServer)
 }
